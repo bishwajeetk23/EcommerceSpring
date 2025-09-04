@@ -9,6 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class EcommerceSpringApplication {
 
 	public static void main(String[] args) {
+        // TODO: add retrofit
+        // make api call
+        // create 2 more apis
         Dotenv dotenv = Dotenv.configure().load();
         // loading the env
         dotenv.entries().forEach((DotenvEntry entry) -> System.setProperty(entry.getKey(),entry.getValue()));
