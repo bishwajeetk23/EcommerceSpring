@@ -1,31 +1,28 @@
-package com.example.EcommerceSpring.entity;
+package com.example.EcommerceSpring.dtos;
 
-import jakarta.persistence.Entity;
+import com.example.EcommerceSpring.entity.Category;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.*;
 
-@Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class Product extends BaseEntity{
+public class ProductDTO {
     private String image;
     private String color;
     private int price;
     private String description;
     private int discount;
     private String model;
-//    private int id;
     private String title;
-//    private String category;
     private String brand;
     private boolean popular;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
+    private Long id;
+    // private Long categoryId;
+    private CategoryDTO category;
 }
+
