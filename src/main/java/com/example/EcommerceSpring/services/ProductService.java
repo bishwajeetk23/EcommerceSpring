@@ -3,6 +3,7 @@ package com.example.EcommerceSpring.services;
 import com.example.EcommerceSpring.dtos.CategoryDTO;
 import com.example.EcommerceSpring.dtos.ProductDTO;
 import com.example.EcommerceSpring.entity.Product;
+import com.example.EcommerceSpring.mappers.ProductMapper;
 import com.example.EcommerceSpring.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -31,4 +32,12 @@ public class ProductService implements IProductService{
                         .build())
                         .toList();
     }
+
+    @Override
+    public ProductDTO getProductById(Long productId) {
+        Product product = repo.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found with id: " + productId));
+        return ProductMapper.toProductDTO(product);
+    }
+
 }

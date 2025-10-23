@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface IProductService {
     public List<ProductDTO> getAllProduct();
+    public ProductDTO getProductById(Long productId);
 }
