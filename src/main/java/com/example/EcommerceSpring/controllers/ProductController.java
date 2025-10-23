@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,6 +29,11 @@ public class ProductController {
     @GetMapping
     public ResponseEntity<List<ProductDTO>> getAllProduct(){
         List<ProductDTO> response = productService.getAllProduct();
+        return ResponseEntity.ok(response);
+    }
+    @GetMapping("/{productId}")
+    public ResponseEntity<ProductDTO> getProductById(@PathVariable Long productId){
+        ProductDTO response = productService.getProductById(productId);
         return ResponseEntity.ok(response);
     }
     // getproductbytid

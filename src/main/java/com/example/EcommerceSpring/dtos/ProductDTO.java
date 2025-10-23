@@ -22,7 +22,7 @@ public class ProductDTO {
     private String brand;
     private boolean popular;
     private Long id;
-    // private Long categoryId;
+//    private Long categoryId;
     private CategoryDTO category;
 }
 
