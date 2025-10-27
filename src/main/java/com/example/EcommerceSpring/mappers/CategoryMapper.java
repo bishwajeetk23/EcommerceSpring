@@ -1,6 +1,7 @@
 package com.example.EcommerceSpring.mappers;
 
 import com.example.EcommerceSpring.dtos.CategoryDTO;
+import com.example.EcommerceSpring.dtos.FakeStoreResponseCategoryDTO;
 import com.example.EcommerceSpring.entity.Category;
 
 public class CategoryMapper {
@@ -15,6 +16,13 @@ public class CategoryMapper {
         return CategoryDTO.builder()
                 .id(category.getId())
                 .name(category.getName())
+                .build();
+    }
+
+    public static CategoryDTO fakeStoreResponseCategoryDTOtoCategoryDTO(String category){
+        return CategoryDTO.builder()
+                .name(category)
+                .id((1L))
                 .build();
     }
 }
