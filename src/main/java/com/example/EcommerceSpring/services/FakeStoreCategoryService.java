@@ -3,12 +3,13 @@ package com.example.EcommerceSpring.services;
 import com.example.EcommerceSpring.dtos.CategoryDTO;
 import com.example.EcommerceSpring.gateway.FakeStoreCategoryGateway;
 import com.example.EcommerceSpring.gateway.ICategoryGateway;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
 
-@Service
+@Service("FakeStoreCategoryService")
 public class FakeStoreCategoryService implements ICategoryService{
     private final ICategoryGateway categoryGateway;
     public FakeStoreCategoryService(ICategoryGateway categoryGateway){
@@ -16,6 +17,7 @@ public class FakeStoreCategoryService implements ICategoryService{
     }
     @Override
     public List<CategoryDTO> getAllCategories() throws IOException {
+        System.out.println("FakeStore service called");
         return categoryGateway.getAllCategories();
     }
 }

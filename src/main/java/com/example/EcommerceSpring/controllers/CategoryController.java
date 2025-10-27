@@ -2,6 +2,7 @@ package com.example.EcommerceSpring.controllers;
 
 import com.example.EcommerceSpring.dtos.CategoryDTO;
 import com.example.EcommerceSpring.services.ICategoryService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,13 +22,16 @@ public class CategoryController {
     // lets consider there are two catory services. one contains all logics for business logic elated to fakestore
     // and other will have business logic related to database related
     // so thats why both should depend on abstraction as one changes does not affect other
+
     private final ICategoryService categoryService;
-    public CategoryController(ICategoryService categoryService){
+//    @Autowired (field based DI)
+//    private final ICategoryService categoryService;
+    public CategoryController(@Qualifier("CategoryService") ICategoryService categoryService){
         this.categoryService = categoryService;
     }
    @GetMapping
     public ResponseEntity<List<CategoryDTO>> getAllCategories() throws IOException {
        List<CategoryDTO> result = categoryService.getAllCategories();
-        return ResponseEntity.created(null).body(result);
+        return ResponseEntity.ok(result);
    }
 }
