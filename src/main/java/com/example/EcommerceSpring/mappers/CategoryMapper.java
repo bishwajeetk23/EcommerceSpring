@@ -10,4 +10,11 @@ public class CategoryMapper {
                 .name(category.getName())
                 .build();
     }
+
+    public static CategoryDTO entityToCategoryDTO(Category category){
+        return CategoryDTO.builder()
+                .id(category.getId())
+                .name(category.getName())
+                .build();
+    }
 }
