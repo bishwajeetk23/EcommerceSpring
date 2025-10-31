@@ -1,15 +1,13 @@
 package com.example.EcommerceSpring.controllers;
 
+import com.example.EcommerceSpring.dtos.CreateProductRequestDTO;
 import com.example.EcommerceSpring.dtos.ProductDTO;
 import com.example.EcommerceSpring.entity.Product;
 import com.example.EcommerceSpring.services.IProductService;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,7 +35,14 @@ public class ProductController {
         ProductDTO response = productService.getProductById(productId);
         return ResponseEntity.ok(response);
     }
-    // getproductbytid
+
+    @PostMapping
+    public ResponseEntity<ProductDTO> createProduct(@RequestBody CreateProductRequestDTO dto) throws Exception{
+        ProductDTO response = productService.createProduct(dto);
+        return ResponseEntity.ok(response);
+    }
+    // getproductbytid --> done
+    // createproduct
     // deleteproductby id
     // getproductwithcategory
 
