@@ -28,4 +28,10 @@ public class CategoryService implements ICategoryService{
         Category category = categoryRepository.save(CategoryMapper.createCategoryRequestDTOtoCategoryEntity(dto));
         return CategoryMapper.toCategoryDTO(category);
     }
+
+    @Override
+    public CategoryDTO getCategoryById(Long categoryId) throws Exception{
+        Category category = categoryRepository.findById(categoryId).orElseThrow(()-> new Exception("Category id: "+categoryId+" not found !!"));
+        return CategoryMapper.toCategoryDTO(category);
+    }
 }
