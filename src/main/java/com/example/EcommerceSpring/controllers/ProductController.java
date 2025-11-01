@@ -42,8 +42,7 @@ public class ProductController {
         return ResponseEntity.ok(response);
     }
     // getproductbytid --> done
-    // createproduct
+    // createproduct -----> done
     // deleteproductby id
     // getproductwithcategory
-
 }
