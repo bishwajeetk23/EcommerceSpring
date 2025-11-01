@@ -1,6 +1,7 @@
 package com.example.EcommerceSpring.services;
 
 import com.example.EcommerceSpring.dtos.CategoryDTO;
+import com.example.EcommerceSpring.dtos.CreateCategoryRequestDTO;
 import com.example.EcommerceSpring.entity.Category;
 import com.example.EcommerceSpring.mappers.CategoryMapper;
 import com.example.EcommerceSpring.repository.CategoryRepository;
@@ -21,6 +22,10 @@ public class CategoryService implements ICategoryService{
         System.out.println("Service is called");
         List<Category> categoryList = this.categoryRepository.findAll();
         return categoryList.stream().map(CategoryMapper::entityToCategoryDTO).toList();
-//        return categoryList.stream().map((Category category)-> CategoryMapper.entityToCategoryDTO(category)).toList();
+    }
+    @Override
+    public CategoryDTO createCategory(CreateCategoryRequestDTO dto){
+        Category category = categoryRepository.save(CategoryMapper.createCategoryRequestDTOtoCategoryEntity(dto));
+        return CategoryMapper.toCategoryDTO(category);
     }
 }

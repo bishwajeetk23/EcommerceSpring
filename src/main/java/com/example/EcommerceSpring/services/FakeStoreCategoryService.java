@@ -1,6 +1,7 @@
 package com.example.EcommerceSpring.services;
 
 import com.example.EcommerceSpring.dtos.CategoryDTO;
+import com.example.EcommerceSpring.dtos.CreateCategoryRequestDTO;
 import com.example.EcommerceSpring.gateway.ICategoryGateway;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -19,5 +20,10 @@ public class FakeStoreCategoryService implements ICategoryService{
     public List<CategoryDTO> getAllCategories() throws IOException {
         System.out.println("FakeStore service called");
         return this.categoryGateway.getAllCategories();
+    }
+
+    @Override
+    public CategoryDTO createCategory(CreateCategoryRequestDTO dto){
+        return null;
     }
 }

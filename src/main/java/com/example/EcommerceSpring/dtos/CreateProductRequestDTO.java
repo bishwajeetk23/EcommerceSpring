@@ -1,9 +1,5 @@
 package com.example.EcommerceSpring.dtos;
 
-import com.example.EcommerceSpring.entity.Category;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 @Getter
@@ -11,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProductDTO {
+public class CreateProductRequestDTO {
     private String image;
     private String color;
     private int price;
@@ -21,7 +17,5 @@ public class ProductDTO {
     private String title;
     private String brand;
     private boolean popular;
-    private Long id;
     private Long categoryId;
 }
-
