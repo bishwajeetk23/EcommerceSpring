@@ -9,4 +9,5 @@ import java.util.List;
 public interface ICategoryService {
     List<CategoryDTO> getAllCategories() throws IOException;
     CategoryDTO createCategory(CreateCategoryRequestDTO dto);
+    CategoryDTO getCategoryById(Long categoryId)  throws Exception;
 }

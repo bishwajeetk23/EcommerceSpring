@@ -34,6 +34,12 @@ public class CategoryController {
         return ResponseEntity.ok(result);
    }
 
+    @GetMapping("/{categoryId}")
+    public ResponseEntity<CategoryDTO> getCategoryById(@PathVariable Long categoryId) throws Exception {
+        CategoryDTO result = categoryService.getCategoryById(categoryId);
+        return ResponseEntity.ok(result);
+    }
+
    @PostMapping
    public ResponseEntity<CategoryDTO> createCategory(@RequestBody CreateCategoryRequestDTO dto){
        CategoryDTO category = categoryService.createCategory(dto);
