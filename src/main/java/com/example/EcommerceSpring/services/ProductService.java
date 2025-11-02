@@ -3,6 +3,7 @@ package com.example.EcommerceSpring.services;
 import com.example.EcommerceSpring.dtos.CategoryDTO;
 import com.example.EcommerceSpring.dtos.CreateProductRequestDTO;
 import com.example.EcommerceSpring.dtos.ProductDTO;
+import com.example.EcommerceSpring.dtos.ProductWithCategoryDTO;
 import com.example.EcommerceSpring.entity.Category;
 import com.example.EcommerceSpring.entity.Product;
 import com.example.EcommerceSpring.mappers.ProductMapper;
@@ -40,6 +41,21 @@ public class ProductService implements IProductService{
     }
 
     @Override
+    public List<ProductDTO> getAllProductWithMinPrice(int minPrice) {
+        List<Product> productList = repo.findExpensiveProducts(minPrice);
+        return productList.stream().map((Product product) ->  ProductDTO.builder()
+                        .id(product.getId())
+                        .brand(product.getBrand())
+                        .image(product.getImage())
+                        .model(product.getModel())
+                        .categoryId(product.getCategory().getId())
+                        .color(product.getColor())
+                        .title(product.getTitle())
+                        .build())
+                .toList();
+    }
+
+    @Override
     public ProductDTO getProductById(Long productId) {
         Product product = repo.findById(productId)
                 .orElseThrow(() -> new RuntimeException("Product not found with id: " + productId));
@@ -52,6 +68,18 @@ public class ProductService implements IProductService{
                 .orElseThrow(()-> new Exception("Category not found"));
         Product productResponse = repo.save(ProductMapper.CreateProductRequestDTOtoProductEntity(product,category));
         return ProductMapper.toProductDTO(productResponse);
+    }
+
+    @Override
+    public List<ProductDTO> searchFullText(String searchText) throws Exception {
+        List<Product> productList = repo.searchFullText(searchText).orElseThrow(()->new Exception("No query found"));
+        return productList.stream().map(ProductMapper::toProductDTO).toList();
+    }
+
+    @Override
+    public ProductWithCategoryDTO getProductWithCategoryById(Long productId) throws Exception{
+        Product product = repo.findById(productId).orElseThrow(()-> new Exception("Product not found"));
+        return ProductMapper.ProductEntitytoProductWithCategoryDTO(product);
     }
 
 }
