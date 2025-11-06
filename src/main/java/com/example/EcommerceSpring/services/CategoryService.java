@@ -1,11 +1,11 @@
 package com.example.EcommerceSpring.services;
-
 import com.example.EcommerceSpring.dtos.AllProductsOfCategoryDTO;
 import com.example.EcommerceSpring.dtos.CategoryDTO;
 import com.example.EcommerceSpring.dtos.CreateCategoryRequestDTO;
 import com.example.EcommerceSpring.dtos.ProductDTO;
 import com.example.EcommerceSpring.entity.Category;
 import com.example.EcommerceSpring.entity.Product;
+import com.example.EcommerceSpring.exception.CategoryNotFoundException;
 import com.example.EcommerceSpring.mappers.CategoryMapper;
 import com.example.EcommerceSpring.mappers.ProductMapper;
 import com.example.EcommerceSpring.repository.CategoryRepository;
@@ -35,7 +35,7 @@ public class CategoryService implements ICategoryService{
 
     @Override
     public CategoryDTO getCategoryById(Long categoryId) throws Exception{
-        Category category = categoryRepository.findById(categoryId).orElseThrow(()-> new Exception("Category id: "+categoryId+" not found !!"));
+        Category category = categoryRepository.findById(categoryId).orElseThrow(()-> new CategoryNotFoundException("Category id: "+categoryId+" not found !!"));
         return CategoryMapper.toCategoryDTO(category);
     }
 
