@@ -4,8 +4,10 @@ import com.example.EcommerceSpring.dtos.AllProductsOfCategoryDTO;
 import com.example.EcommerceSpring.dtos.CategoryDTO;
 import com.example.EcommerceSpring.dtos.CreateCategoryRequestDTO;
 import com.example.EcommerceSpring.dtos.ProductDTO;
+import com.example.EcommerceSpring.exception.CategoryNotFoundException;
 import com.example.EcommerceSpring.services.ICategoryService;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,4 +59,9 @@ public class CategoryController {
         AllProductsOfCategoryDTO response = categoryService.getAllProductsOfCategory(id);
         return ResponseEntity.ok(response);
    }
+
+//   @ExceptionHandler(CategoryNotFoundException.class)
+//    public ResponseEntity<String> handleCategoryNotFound(CategoryNotFoundException ex){
+//        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+//   }
 }
