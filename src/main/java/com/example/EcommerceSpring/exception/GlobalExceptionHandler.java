@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
 
     // generic exception handler
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> handleGeneric(CategoryNotFoundException ex){
+    public ResponseEntity<ErrorResponse> handleGeneric(Exception ex){
         ErrorResponse err = new ErrorResponse(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 "An unexpected error occurred. We are working on it.",
